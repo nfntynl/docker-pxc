@@ -21,11 +21,13 @@ RUN \
     && mv /tmp/my.cnf /etc/mysql/my.cnf \
     && mkdir -p /opt/rancher \
     && curl -SL https://github.com/cloudnautique/giddyup/releases/download/v0.8.0/giddyup -o /opt/rancher/giddyup \
-    && chmod +x /opt/rancher/giddyup 
+    && chmod +x /opt/rancher/giddyup
 
 COPY ./start_pxc /opt/rancher
 
 COPY ./docker-entrypoint.sh /
+
+RUN chmod +x /docker-entrypoint.sh
 
 VOLUME ["/var/lib/mysql", "/etc/mysql/conf.d"]
 
