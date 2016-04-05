@@ -28,7 +28,7 @@ COPY ./docker-entrypoint.sh /
 
 RUN chmod +x /docker-entrypoint.sh
 
-VOLUME ["/var/lib/mysql", "/etc/mysql/conf.d"]
+VOLUME ["/var/lib/mysql", "/run/mysqld", "/etc/mysql/conf.d"]
 
 ENTRYPOINT ["/docker-entrypoint.sh"]
 
