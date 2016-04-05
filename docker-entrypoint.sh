@@ -65,7 +65,7 @@ if [ "$1" = 'mysqld' ]; then
 			DROP DATABASE IF EXISTS test ;
 			CREATE USER 'sstuser'@'%' IDENTIFIED BY '${PXC_SST_PASSWORD}' ;
 			GRANT RELOAD, LOCK TABLES, REPLICATION CLIENT ON *.* TO 'sstuser'@'%' ;
-			GRANT PROCESS ON *.* TO 'clustercheckuser'@'127.0.0.1' IDENTIFIED BY 'clustercheckpassword!' ;			
+			GRANT PROCESS ON *.* TO 'clustercheckuser'@'localhost' IDENTIFIED BY 'clustercheckpassword!' ;			
 			FLUSH PRIVILEGES ;
 		EOSQL
 

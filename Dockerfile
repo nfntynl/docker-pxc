@@ -10,7 +10,6 @@ RUN \
     && echo 'deb http://repo.percona.com/apt jessie main' > /etc/apt/sources.list.d/percona.list \
     && apt-get update && apt-get install -y \
         percona-xtradb-cluster-${PERCONA_MAJOR} \
-        xinetd \
         curl \
         sysbench \
     && rm -rf /var/lib/apt/lists/* \
