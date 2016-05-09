@@ -40,7 +40,7 @@ This is an optional variable. Set to yes to allow the container to be started wi
 
 Example Rancher docker-compose stack
 
-```
+```yaml
 pxc:
   image: flowman/percona-xtradb-cluster-confd:v0.2.0
   labels:
@@ -76,7 +76,7 @@ pxc-data:
 
 Example rancher-compose for monitoring pxc
 
-```
+```yaml
 pxc:
   scale: 3
   health_check:
@@ -107,7 +107,7 @@ pxc:
 
 For example, if you need to change anything, edit the Dockerfile and than build-it.
 
-```
+```bash
 git clone git@github.com:Flowman/percona-xtradb-cluster.git
 cd ./percona-xtradb-cluster
 docker build --rm -t flowman/percona-xtradb-cluster .
