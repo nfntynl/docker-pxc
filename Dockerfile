@@ -19,7 +19,7 @@ RUN \
     && echo 'skip-host-cache\nskip-name-resolve' | awk '{ print } $1 == "[mysqld]" && c == 0 { c = 1; system("cat") }' /etc/mysql/my.cnf > /tmp/my.cnf \
     && mv /tmp/my.cnf /etc/mysql/my.cnf \
     && mkdir -p /opt/rancher \
-    && curl -SL https://github.com/cloudnautique/giddyup/releases/download/v0.8.0/giddyup -o /opt/rancher/giddyup \
+    && curl -SL https://github.com/cloudnautique/giddyup/releases/download/v0.14.0/giddyup -o /opt/rancher/giddyup \
     && chmod +x /opt/rancher/giddyup
 
 COPY ./start_pxc /opt/rancher
