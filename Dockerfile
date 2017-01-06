@@ -2,11 +2,11 @@ FROM debian:jessie
 
 MAINTAINER Peter Szalatnay <theotherland@gmail.com>
 
-ENV DEBIAN_FRONTEND=noninteractive PERCONA_MAJOR=56
+ENV DEBIAN_FRONTEND=noninteractive PERCONA_MAJOR=57
 
 RUN \
     groupadd -r mysql && useradd -r -g mysql mysql \
-    && apt-key adv --keyserver hkp://ha.pool.sks-keyservers.net:80 --recv-keys 430BDF5C56E7C94E848EE60C1C4CBDCDCD2EFD2A \
+    && apt-key adv --keyserver hkp://ha.pool.sks-keyservers.net:80 --recv-keys 8507EFA5 \
     && echo 'deb http://repo.percona.com/apt jessie main' > /etc/apt/sources.list.d/percona.list \
     && apt-get update && apt-get install -y \
         percona-xtradb-cluster-${PERCONA_MAJOR} \
