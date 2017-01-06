@@ -29,7 +29,7 @@ if [ "$1" = 'mysqld' ]; then
         sed -i 's/^\(!includedir\)/#\1/' /etc/mysql/my.cnf
 
 		echo 'Initializing database'
-		mysql_install_db --user=mysql --datadir="$DATADIR" --rpm
+		"$@" --initialize-insecure
 		echo 'Database initialized'
 
 		"$@" --skip-networking &
@@ -65,7 +65,7 @@ if [ "$1" = 'mysqld' ]; then
 			DROP DATABASE IF EXISTS test ;
 			CREATE USER 'sstuser'@'%' IDENTIFIED BY '${PXC_SST_PASSWORD}' ;
 			GRANT RELOAD, LOCK TABLES, REPLICATION CLIENT ON *.* TO 'sstuser'@'%' ;
-			GRANT PROCESS ON *.* TO 'clustercheckuser'@'localhost' IDENTIFIED BY 'clustercheckpassword!' ;			
+			GRANT PROCESS ON *.* TO 'clustercheckuser'@'localhost' IDENTIFIED BY 'clustercheckpassword!' ;
 			FLUSH PRIVILEGES ;
 		EOSQL
 
