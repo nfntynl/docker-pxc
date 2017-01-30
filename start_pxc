@@ -29,9 +29,13 @@ if [ "$#" -eq "0" ]; then
     fi
 
     set -- mysqld --wsrep_cluster_address=gcomm://$(./giddyup ip stringify)?pc.wait_prim=no
-    if [ "${leader}" = "true" ]; then
-        set -- mysqld --wsrep-new-cluster --wsrep_cluster_address=gcomm://$(./giddyup ip stringify)?pc.wait_prim=no
-    fi
+
+#   When this container is a leader, do not always initialize a new cluster but check if the container has been initialized before.
+#   This allows the leader to be restarted without creating a split brain (two clusters)
+#    if [ "${leader}" = "true" ]; then
+#        set -- mysqld --wsrep-new-cluster --wsrep_cluster_address=gcomm://$(./giddyup ip stringify)?pc.wait_prim=no
+#    fi
+
     touch /opt/rancher/configured
     if [ "${leader}" = "true" ] && [ ! -f "/opt/rancher/initialized" ]; then
         set -- mysqld --wsrep-new-cluster --wsrep_cluster_address=gcomm://$(./giddyup ip stringify)?pc.wait_prim=no
